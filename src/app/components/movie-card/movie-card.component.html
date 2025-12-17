@@ -1,0 +1,29 @@
+<div
+  class="movie-card"
+  (click)="onCardClick()"
+  role="button"
+  tabindex="0"
+>
+  <div class="movie-card__poster">
+    <img
+      [src]="getImageUrl()"
+      [alt]="movie.title"
+      class="movie-poster"
+      (error)="onImageError($event)"
+    />
+    <div class="movie-card__rating">
+      {{ movie.rating }}
+    </div>
+  </div>
+
+  <div class="movie-card__content">
+    <h3 class="movie-card__title">{{ movie.title }}</h3>
+    <div class="movie-card__meta">
+      <span class="movie-card__year">{{ movie.year }}</span>
+      <span class="movie-card__duration">{{ movie.duration }} мин</span>
+    </div>
+    <div class="movie-card__genres">
+      {{ movie.genres.join(', ') }}
+    </div>
+  </div>
+</div>

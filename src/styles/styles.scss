@@ -1,0 +1,410 @@
+// Импорт шрифтов
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+// Импорт базовых стилей
+@import 'variables';
+@import 'mixins';
+@import 'global';
+
+// Дополнительные глобальные стили
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+// Основной контейнер приложения
+.app-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+// Заголовок страницы
+.page-header {
+  margin-bottom: $spacing-xl;
+  padding-bottom: $spacing-md;
+  border-bottom: 1px solid var(--border-color);
+
+  h1 {
+    font-size: $font-size-xxl;
+    font-weight: 300;
+    margin-bottom: $spacing-sm;
+  }
+
+  p {
+    color: var(--text-secondary);
+    font-size: $font-size-lg;
+  }
+}
+
+// Основной контент
+.main-content {
+  flex: 1;
+  padding: $spacing-xl 0;
+}
+
+// Подвал
+.page-footer {
+  margin-top: auto;
+  padding: $spacing-xl 0;
+  background-color: var(--background-footer);
+  color: var(--text-light);
+
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include respond-to('tablet') {
+      flex-direction: column;
+      gap: $spacing-lg;
+      text-align: center;
+    }
+  }
+
+  .footer-links {
+    display: flex;
+    gap: $spacing-lg;
+
+    a {
+      color: var(--text-light);
+      opacity: 0.8;
+      transition: opacity $transition-fast;
+
+      &:hover {
+        opacity: 1;
+        text-decoration: underline;
+      }
+    }
+
+    @include respond-to('tablet') {
+      flex-direction: column;
+      gap: $spacing-sm;
+    }
+  }
+
+  .copyright {
+    opacity: 0.7;
+    font-size: $font-size-sm;
+  }
+}
+
+// Утилиты для отступов
+.section-padding {
+  padding: $spacing-xxl 0;
+
+  @include respond-to('tablet') {
+    padding: $spacing-xl 0;
+  }
+
+  @include respond-to('mobile') {
+    padding: $spacing-lg 0;
+  }
+}
+
+// Контейнер для центрирования
+.center-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+}
+
+// Класс для скрытия элементов
+.hidden {
+  display: none !important;
+}
+
+.invisible {
+  visibility: hidden;
+  opacity: 0;
+}
+
+// Адаптивные изображения
+.responsive-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+// Переопределение стилей для темной темы
+.dark-theme {
+  // Дополнительные стили для темной темы
+  .bg-light {
+    background-color: var(--background-secondary);
+  }
+
+  // Более контрастные тени в темной теме
+  .shadow-sm {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  }
+
+  .shadow-md {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  }
+
+  .shadow-lg {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+  }
+
+  .shadow-xl {
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.7);
+  }
+}
+
+// Стили для переключателя темы
+.theme-switcher {
+  position: fixed;
+  bottom: $spacing-xl;
+  right: $spacing-xl;
+  z-index: 1000;
+
+  @include respond-to('tablet') {
+    bottom: $spacing-lg;
+    right: $spacing-lg;
+  }
+
+  @include respond-to('mobile') {
+    bottom: $spacing-md;
+    right: $spacing-md;
+  }
+
+  .theme-toggle {
+    @include flex-center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: all $transition-normal;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      transform: scale(1.1) rotate(15deg);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    &:focus {
+      outline: 2px solid var(--primary-light);
+      outline-offset: 2px;
+    }
+
+    .sun-icon {
+      display: none;
+    }
+
+    .moon-icon {
+      display: block;
+    }
+  }
+
+  // Иконки для разных состояний
+  &.dark-theme-active {
+    .theme-toggle {
+      background-color: var(--primary-dark);
+
+      .sun-icon {
+        display: block;
+      }
+
+      .moon-icon {
+        display: none;
+      }
+    }
+  }
+}
+
+// Анимации для перехода темы
+.theme-transition {
+  * {
+    transition: background-color 0.3s ease,
+                color 0.3s ease,
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+  }
+}
+
+// Стили для загрузки
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(var(--background-dark), 0.8);
+  @include flex-center;
+  z-index: 9999;
+
+  .loading-content {
+    text-align: center;
+    color: var(--text-light);
+
+    p {
+      margin-top: $spacing-md;
+      font-size: $font-size-lg;
+    }
+  }
+}
+
+// Стили для уведомлений
+.notification {
+  position: fixed;
+  top: $spacing-xl;
+  right: $spacing-xl;
+  padding: $spacing-md $spacing-lg;
+  border-radius: $border-radius-md;
+  background-color: var(--background-card);
+  color: var(--text-primary);
+  box-shadow: 0 4px 12px var(--shadow-color-dark);
+  z-index: 1001;
+  max-width: 400px;
+  animation: slideInRight 0.3s ease-out;
+
+  @include respond-to('tablet') {
+    top: $spacing-lg;
+    right: $spacing-lg;
+    left: $spacing-lg;
+    max-width: none;
+  }
+
+  @include respond-to('mobile') {
+    top: $spacing-md;
+    right: $spacing-md;
+    left: $spacing-md;
+  }
+
+  &.success {
+    border-left: 4px solid var(--success-color);
+  }
+
+  &.warning {
+    border-left: 4px solid var(--warning-color);
+  }
+
+  &.error {
+    border-left: 4px solid var(--error-color);
+  }
+
+  &.info {
+    border-left: 4px solid var(--primary-color);
+  }
+
+  .notification-content {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-md;
+
+    .icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .message {
+      flex: 1;
+
+      h4 {
+        margin-bottom: $spacing-xs;
+        font-weight: 500;
+      }
+
+      p {
+        margin: 0;
+        font-size: $font-size-sm;
+        opacity: 0.9;
+      }
+    }
+
+    .close {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-size: 1.2rem;
+      padding: 0;
+      flex-shrink: 0;
+
+      &:hover {
+        color: var(--text-primary);
+      }
+    }
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+// Стили для модальных окон
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(var(--background-dark), 0.7);
+  @include flex-center;
+  z-index: 1000;
+  padding: $spacing-md;
+
+  .modal {
+    background-color: var(--background-card);
+    border-radius: $border-radius-lg;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: scaleIn 0.3s ease-out;
+
+    .modal-header {
+      padding: $spacing-lg;
+      border-bottom: 1px solid var(--border-color);
+      @include flex-between;
+      align-items: center;
+
+      h3 {
+        margin: 0;
+        font-size: $font-size-xl;
+      }
+
+      .close-button {
+        background: none;
+        border: none;
+        color: var(--text-secondary);
+        cursor: pointer;
+        font-size: 1.5rem;
+        padding: $spacing-xs;
+        border-radius: $border-radius-sm;
+
+        &:hover {
+          background-color: var(--background-primary);
+          color: var(--text-primary);
+        }
+      }
+    }
+
+    .modal-body {
+      padding: $spacing-lg;
+    }
+
+    .modal-footer {
+      padding: $spacing-lg;
+      border-top: 1px solid var(--border-color);
+      @include flex-between;
+      align-items: center;
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "port": 3000,
+  "routes": {
+    "/api/*": "/$1"
+  },
+  "watch": true,
+  "delay": 500
+}

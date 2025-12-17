@@ -1,0 +1,124 @@
+// CSS переменные для темы
+:root {
+  // Основные цвета
+  --primary-color: #1976d2;
+  --primary-dark: #0d47a1;
+  --primary-light: #64b5f6;
+  --secondary-color: #ff4081;
+  --secondary-dark: #c60055;
+  --secondary-light: #ff79b0;
+
+  // Цвета текста (светлая тема по умолчанию)
+  --text-primary: #212121;
+  --text-secondary: #757575;
+  --text-light: #ffffff;
+
+  // Цвета фона (светлая тема по умолчанию)
+  --background-primary: #f5f5f5;
+  --background-secondary: #ffffff;
+  --background-card: #ffffff;
+  --background-dark: #212121;
+  --background-header: #ffffff;
+  --background-footer: #212121;
+
+  // Границы и тени
+  --border-color: #e0e0e0;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --shadow-color-dark: rgba(0, 0, 0, 0.2);
+
+  // Состояния
+  --success-color: #4caf50;
+  --warning-color: #ff9800;
+  --error-color: #f44336;
+
+  // Рейтинги
+  --rating-success: #4caf50;
+  --rating-warning: #ff9800;
+  --rating-error: #f44336;
+}
+
+// Темная тема
+.dark-theme {
+  --primary-color: #64b5f6;
+  --primary-dark: #42a5f5;
+  --primary-light: #90caf9;
+  --secondary-color: #ff79b0;
+  --secondary-dark: #ff4081;
+  --secondary-light: #ffb3d9;
+
+  // Цвета текста (темная тема)
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0b0;
+  --text-light: #ffffff;
+
+  // Цвета фона (темная тема)
+  --background-primary: #121212;
+  --background-secondary: #1e1e1e;
+  --background-card: #2d2d2d;
+  --background-dark: #000000;
+  --background-header: #1e1e1e;
+  --background-footer: #000000;
+
+  // Границы и тени (темная тема)
+  --border-color: #404040;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --shadow-color-dark: rgba(0, 0, 0, 0.5);
+
+  // Состояния (немного ярче для темной темы)
+  --success-color: #66bb6a;
+  --warning-color: #ffb74d;
+  --error-color: #ef5350;
+
+  // Рейтинги для темной темы
+  --rating-success: #66bb6a;
+  --rating-warning: #ffb74d;
+  --rating-error: #ef5350;
+}
+
+// Sass переменные для обратной совместимости
+$primary-color: var(--primary-color);
+$primary-dark: var(--primary-dark);
+$primary-light: var(--primary-light);
+$secondary-color: var(--secondary-color);
+$secondary-dark: var(--secondary-dark);
+$secondary-light: var(--secondary-light);
+
+$text-primary: var(--text-primary);
+$text-secondary: var(--text-secondary);
+$text-light: var(--text-light);
+
+$background-light: var(--background-primary);
+$background-dark: var(--background-dark);
+$background-card: var(--background-card);
+
+$success-color: var(--success-color);
+$warning-color: var(--warning-color);
+$error-color: var(--error-color);
+
+// Spacing
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+$spacing-xxl: 48px;
+
+// Typography
+$font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+$font-size-xs: 12px;
+$font-size-sm: 14px;
+$font-size-md: 16px;
+$font-size-lg: 20px;
+$font-size-xl: 24px;
+$font-size-xxl: 32px;
+
+// Border
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 12px;
+$border-radius-xl: 16px;
+
+// Transitions
+$transition-fast: 0.2s ease;
+$transition-normal: 0.3s ease;
+$transition-slow: 0.5s ease;

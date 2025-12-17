@@ -1,0 +1,297 @@
+// Медиа-запросы
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == 'mobile' {
+    @media (max-width: 480px) {
+      @content;
+    }
+  } @else if $breakpoint == 'tablet' {
+    @media (max-width: 768px) {
+      @content;
+    }
+  } @else if $breakpoint == 'desktop' {
+    @media (max-width: 1024px) {
+      @content;
+    }
+  } @else if $breakpoint == 'wide' {
+    @media (min-width: 1200px) {
+      @content;
+    }
+  } @else {
+    @media (max-width: $breakpoint) {
+      @content;
+    }
+  }
+}
+
+// Flexbox
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-column-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+// Позиционирование
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin fixed-center {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// Текст
+@mixin text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin multi-line-ellipsis($lines) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// Тени
+@mixin shadow-sm {
+  box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+@mixin shadow-md {
+  box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+@mixin shadow-lg {
+  box-shadow: 0 8px 16px var(--shadow-color-dark);
+}
+
+@mixin shadow-xl {
+  box-shadow: 0 16px 32px var(--shadow-color-dark);
+}
+
+@mixin card-shadow {
+  box-shadow: 0 2px 8px var(--shadow-color);
+  transition: box-shadow $transition-normal;
+
+  &:hover {
+    box-shadow: 0 4px 16px var(--shadow-color-dark);
+  }
+}
+
+// Анимации
+@mixin transition-all($duration: $transition-normal) {
+  transition: all $duration ease;
+}
+
+@mixin fade-in($duration: $transition-slow) {
+  animation: fadeIn $duration ease-in;
+}
+
+@mixin slide-in($duration: $transition-normal) {
+  animation: slideIn $duration ease-out;
+}
+
+@mixin scale-in($duration: $transition-normal) {
+  animation: scaleIn $duration ease-out;
+}
+
+// Градиенты
+@mixin gradient-primary {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+}
+
+@mixin gradient-secondary {
+  background: linear-gradient(135deg, var(--secondary-color) 0%, var(--secondary-dark) 100%);
+}
+
+@mixin gradient-dark {
+  background: linear-gradient(135deg, var(--background-dark) 0%, #333 100%);
+}
+
+// Кнопки
+@mixin button-primary {
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  border: none;
+  border-radius: $border-radius-sm;
+  padding: $spacing-sm $spacing-lg;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-1px);
+  }
+
+  &:focus {
+    outline: 2px solid var(--primary-light);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+@mixin button-secondary {
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  border-radius: $border-radius-sm;
+  padding: $spacing-sm $spacing-lg;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover {
+    background-color: rgba(var(--primary-color), 0.1);
+    transform: translateY(-1px);
+  }
+
+  &:focus {
+    outline: 2px solid var(--primary-light);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+@mixin button-outline {
+  background-color: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: $border-radius-sm;
+  padding: $spacing-sm $spacing-lg;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover {
+    background-color: var(--background-card);
+    border-color: var(--primary-color);
+    transform: translateY(-1px);
+  }
+
+  &:focus {
+    outline: 2px solid var(--primary-light);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+// Формы
+@mixin form-input {
+  width: 100%;
+  padding: $spacing-sm $spacing-md;
+  border: 1px solid var(--border-color);
+  border-radius: $border-radius-sm;
+  background-color: var(--background-card);
+  color: var(--text-primary);
+  font-size: $font-size-md;
+  transition: border-color $transition-fast, box-shadow $transition-fast;
+
+  &:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(var(--primary-color), 0.1);
+  }
+
+  &::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.7;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// Карточки
+@mixin card-base {
+  background-color: var(--background-card);
+  border-radius: $border-radius-md;
+  overflow: hidden;
+  @include shadow-md;
+  transition: all $transition-normal;
+
+  &:hover {
+    @include shadow-lg;
+    transform: translateY(-2px);
+  }
+}
+
+@mixin card-header {
+  padding: $spacing-lg;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--background-card);
+}
+
+@mixin card-body {
+  padding: $spacing-lg;
+}
+
+@mixin card-footer {
+  padding: $spacing-lg;
+  border-top: 1px solid var(--border-color);
+  background-color: var(--background-card);
+}
+
+// Сетка
+@mixin grid($columns, $gap: $spacing-md) {
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  gap: $gap;
+
+  @include respond-to('tablet') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-to('mobile') {
+    grid-template-columns: 1fr;
+  }
+}
+
+@mixin grid-responsive($min-width: 250px) {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax($min-width, 1fr));
+  gap: $spacing-md;
+}

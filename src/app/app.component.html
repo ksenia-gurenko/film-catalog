@@ -1,0 +1,94 @@
+<div class="app theme-transition">
+  <!-- Шапка -->
+  <header class="app-header" [class.header-scrolled]="showScrollTop">
+    <div class="container">
+      <div class="header-content">
+        <div class="header-left">
+          <button
+            *ngIf="showBackButton"
+            class="back-button"
+            (click)="goBack()"
+            aria-label="Вернуться назад"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+
+          <h1 class="app-title" (click)="goHome()" role="button" tabindex="0" aria-label="Главная страница">
+            {{ title }}
+          </h1>
+        </div>
+
+        <nav class="header-nav" aria-label="Основная навигация">
+          <a
+            routerLink="/"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}"
+            aria-label="Список фильмов"
+          >
+            Все фильмы
+          </a>
+          <a
+            *ngIf="currentRoute.includes('/movie/')"
+            class="current-movie"
+            aria-current="page"
+          >
+            Детали фильма
+          </a>
+        </nav>
+
+        <div class="theme-toggle-wrapper">
+          <button
+            class="theme-toggle"
+            (click)="toggleTheme()"
+            [attr.aria-label]="isDarkTheme ? 'Включить светлую тему' : 'Включить темную тему'"
+            [attr.title]="isDarkTheme ? 'Переключить на светлую тему' : 'Переключить на темную тему'"
+          >
+            <span *ngIf="isDarkTheme">☀️</span>
+            <span *ngIf="!isDarkTheme">🌙</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Основной контент -->
+  <main class="app-main">
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+
+  <!-- Подвал -->
+  <footer class="app-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-info">
+          <p>© {{ currentYear }} Каталог фильмов. Все права защищены.</p>
+          <p>Данные предоставлены для демонстрационных целей.</p>
+        </div>
+
+        <div class="footer-links">
+          <a href="#" aria-label="Политика конфиденциальности">Политика конфиденциальности</a>
+          <a href="#" aria-label="Условия использования">Условия использования</a>
+          <a href="#" aria-label="Контакты">Контакты</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Кнопка "Наверх" -->
+  <div class="scroll-top" *ngIf="showScrollTop">
+    <button
+      class="scroll-top-button"
+      (click)="scrollToTop()"
+      aria-label="Прокрутить наверх"
+      title="Наверх"
+    >
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+</div>

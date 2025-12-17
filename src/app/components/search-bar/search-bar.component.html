@@ -1,0 +1,44 @@
+<form
+  class="search-bar"
+  (submit)="onSubmit($event)"
+  role="search"
+  aria-label="Поиск фильмов"
+>
+  <div class="search-bar__container">
+    <div class="search-bar__icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <input
+      #searchInput
+      type="search"
+      [formControl]="searchControl"
+      class="search-bar__input"
+      placeholder="Поиск фильмов по названию..."
+      aria-label="Введите название фильма для поиска"
+    />
+
+    <button
+      *ngIf="searchControl.value"
+      type="button"
+      class="search-bar__clear"
+      (click)="clearSearch()"
+      aria-label="Очистить поиск"
+    >
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+        <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
+    <button
+      type="submit"
+      class="search-bar__submit"
+      aria-label="Выполнить поиск"
+    >
+      Найти
+    </button>
+  </div>
+</form>

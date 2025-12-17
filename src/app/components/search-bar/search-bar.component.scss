@@ -1,0 +1,92 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.search-bar {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+
+  &__container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: $background-card;
+    border-radius: $border-radius-lg;
+    overflow: hidden;
+    @include card-shadow;
+  }
+
+  &__icon {
+    position: absolute;
+    left: $spacing-lg;
+    color: $text-secondary;
+    pointer-events: none;
+  }
+
+  &__input {
+    flex-grow: 1;
+    padding: $spacing-lg $spacing-lg $spacing-lg $spacing-xxl;
+    border: none;
+    font-size: $font-size-md;
+    background: transparent;
+    color: $text-primary;
+    width: 100%;
+
+    &:focus {
+      outline: none;
+    }
+
+    &::placeholder {
+      color: $text-secondary;
+    }
+
+    @include respond-to('mobile') {
+      padding: $spacing-md $spacing-md $spacing-md $spacing-xl;
+      font-size: $font-size-sm;
+    }
+  }
+
+  &__clear {
+    padding: $spacing-sm;
+    color: $text-secondary;
+    transition: color $transition-fast;
+    background: transparent;
+
+    &:hover {
+      color: $text-primary;
+    }
+
+    &:focus {
+      outline: 2px solid $primary-color;
+      outline-offset: -2px;
+      border-radius: $border-radius-sm;
+    }
+  }
+
+  &__submit {
+    padding: $spacing-md $spacing-xl;
+    background: $primary-color;
+    color: $text-light;
+    font-weight: 500;
+    transition: background-color $transition-fast;
+    white-space: nowrap;
+
+    &:hover {
+      background: $primary-dark;
+    }
+
+    &:focus {
+      outline: 2px solid $primary-light;
+      outline-offset: -2px;
+    }
+
+    @include respond-to('mobile') {
+      padding: $spacing-sm $spacing-lg;
+      font-size: $font-size-sm;
+    }
+  }
+
+  @include respond-to('tablet') {
+    max-width: 100%;
+  }
+}

@@ -1,0 +1,63 @@
+<div class="movie-list">
+  <header class="movie-list__header">
+    <h1 class="movie-list__title">Каталог фильмов</h1>
+    <app-search-bar
+     (search)="onSearch($event)"
+      class="movie-list__search"
+    ></app-search-bar>
+  </header>
+
+  <main class="movie-list__content">
+    <!-- Загрузка -->
+    <div *ngIf="isLoading" class="movie-list__loading">
+      <div class="loading-spinner"></div>
+      <p>Загружаем фильмы...</p>
+    </div>
+
+    <!-- Ошибка -->
+    <div *ngIf="error && !isLoading" class="movie-list__error">
+      <div class="error-message">
+        <h2>Ошибка загрузки</h2>
+        <p>{{ error }}</p>
+        <button
+          class="retry-button"
+          (click)="loadMovies()"
+          aria-label="Попробовать снова"
+        >
+          Попробовать снова
+        </button>
+      </div>
+    </div>
+
+    <!-- Пустой результат -->
+    <div *ngIf="!isLoading && !error && filteredMovies.length === 0" class="movie-list__empty">
+      <div class="empty-state">
+        <h2>{{ getEmptyStateMessage() }}</h2>
+        <button
+          *ngIf="searchQuery"
+          class="clear-search-button"
+          (click)="onSearch('')"
+          aria-label="Очистить поиск"
+        >
+          Очистить поиск
+        </button>
+      </div>
+    </div>
+
+    <!-- Список фильмов -->
+    <div *ngIf="!isLoading && !error && filteredMovies.length > 0" class="movie-list__grid">
+      <app-movie-card
+        *ngFor="let movie of filteredMovies; trackBy: trackByMovieId"
+        [movie]="movie"
+        [showDetails]="false"
+        (cardClick)="onMovieClick(movie.id)"
+        class="movie-list__card"
+      ></app-movie-card>
+    </div>
+
+    <!-- Информация о результате поиска -->
+    <div *ngIf="searchQuery && filteredMovies.length > 0" class="movie-list__results-info">
+      <p>Найдено {{ filteredMovies.length }} фильмов по запросу "{{ searchQuery }}"</p>
+    </div>
+  </main>
+</div>
