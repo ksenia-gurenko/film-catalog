@@ -1,0 +1,88 @@
+{
+  "movies": [
+    {
+      "id": 1,
+      "title": "Начало",
+      "originalTitle": "Inception",
+      "year": 2010,
+      "description": "Криминальный триллер о технологии внедрения в сны.",
+      "rating": 8.8,
+      "duration": 148,
+      "genres": ["фантастика", "триллер"],
+      "director": "Кристофер Нолан",
+      "cast": ["Леонардо ДиКаприо", "Джозеф Гордон-Левитт"],
+      "poster": "inception.jpg",
+      "background": ""
+    },
+    {
+      "id": 2,
+      "title": "Темный рыцарь",
+      "originalTitle": "The Dark Knight",
+      "year": 2008,
+      "description": "Бэтмен борется с хаосом, который создает Джокер.",
+      "rating": 9.0,
+      "duration": 152,
+      "genres": ["боевик", "триллер"],
+      "director": "Кристофер Нолан",
+      "cast": ["Кристиан Бэйл", "Хит Леджер"],
+      "poster": "dark-knight.jpg",
+      "background": ""
+    },
+    {
+      "id": 3,
+      "title": "Интерстеллар",
+      "originalTitle": "Interstellar",
+      "year": 2014,
+      "description": "Космическое путешествие через червоточину.",
+      "rating": 8.6,
+      "duration": 169,
+      "genres": ["фантастика", "драма"],
+      "director": "Кристофер Нолан",
+      "cast": ["Мэттью Макконахи", "Энн Хэтэуэй"],
+      "poster": "interstellar.jpg",
+      "background": ""
+    },
+    {
+      "id": 4,
+      "title": "Помни",
+      "originalTitle": "Memento",
+      "year": 2000,
+      "description": "Мужчина с амнезией пытается найти убийцу своей жены.",
+      "rating": 8.4,
+      "duration": 113,
+      "genres": ["триллер", "детектив"],
+      "director": "Кристофер Нолан",
+      "cast": ["Гай Пирс", "Кэрри-Энн Мосс"],
+      "poster": "memento.jpg",
+      "background": ""
+    },
+    {
+      "id": 5,
+      "title": "Матрица",
+      "originalTitle": "The Matrix",
+      "year": 1999,
+      "description": "Хакер узнает шокирующую правду о реальности.",
+      "rating": 8.7,
+      "duration": 136,
+      "genres": ["фантастика", "боевик"],
+      "director": "Лана и Лилли Вачовски",
+      "cast": ["Киану Ривз", "Лоренс Фишберн"],
+      "poster": "matrix.jpg",
+      "background": ""
+    },
+    {
+      "id": 6,
+      "title": "Криминальное чтиво",
+      "originalTitle": "Pulp Fiction",
+      "year": 1994,
+      "description": "Истории о насилии и искуплении.",
+      "rating": 8.9,
+      "duration": 154,
+      "genres": ["криминал", "драма"],
+      "director": "Квентин Тарантино",
+      "cast": ["Джон Траволта", "Ума Турман"],
+      "poster": "pulp-fiction.jpg",
+      "background": ""
+    }
+  ]
+}
