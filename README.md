@@ -1,6 +1,9 @@
 # Каталог фильмов
 
 Angular приложение для просмотра каталога фильмов с возможностью поиска и просмотра детальной информации.
+
+Ссылка: https://film-catalog-deploy-91k9rjxr3-ksenia-gurenkos-projects.vercel.app/
+
 <img width="1216" height="746" alt="image" src="https://github.com/user-attachments/assets/3247c32e-0ecf-4504-a7dd-67eb31990811" />
 
 ## Функциональность
