@@ -20,3 +20,9 @@ Angular приложение для просмотра каталога филь
 - RxJS
 - Angular Animations
 
+## Запуск проекта
+
+ в двух разных терминалах:
+ 
+ npm run server
+ npm start

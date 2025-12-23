@@ -1,148 +1,27 @@
 <div class="movie-detail">
-  <!-- Загрузка -->
-  <div *ngIf="isLoading" class="movie-detail__loading">
-    <div class="loading-spinner"></div>
-    <p>Загружаем информацию о фильме...</p>
-  </div>
+  <div *ngIf="isLoading">Загрузка...</div>
 
-  <!-- Ошибка -->
-  <div *ngIf="error && !isLoading" class="movie-detail__error">
-    <div class="error-message">
-      <h2>Ошибка</h2>
-      <p>{{ error }}</p>
-      <div class="error-actions">
-        <button
-          class="back-button"
-          (click)="goBack()"
-          aria-label="Вернуться назад"
-        >
-          Назад
-        </button>
-        <button
-          class="retry-button"
-          (click)="loadMovie()"
-          aria-label="Попробовать снова"
-        >
-          Попробовать снова
-        </button>
-      </div>
+  <div *ngIf="!isLoading && movie" class="movie-content">
+    <button routerLink="/">← Назад</button>
+
+    <h1>{{ movie.title }}</h1>
+    <p><em>{{ movie.originalTitle }}</em></p>
+
+    <div class="movie-poster">
+      <img
+        [src]="getImageUrl()"
+        [alt]="movie.title"
+        (error)="onImageError($event)"
+      />
+      <div class="rating">Рейтинг IMDb {{ movie.rating }}</div>
     </div>
-  </div>
 
-  <!-- Детали фильма -->
-  <div *ngIf="movie && !isLoading && !error" class="movie-detail__content">
-    <!-- Заголовок и кнопка назад -->
-    <header class="movie-detail__header">
-      <button
-        class="back-button"
-        (click)="goBack()"
-        aria-label="Вернуться назад"
-      >
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        Назад
-      </button>
-      <h1 class="movie-detail__title">{{ movie.title }}</h1>
-      <p class="movie-detail__original-title">{{ movie.originalTitle }}</p>
-    </header>
-
-    <!-- Основной контент -->
-    <main class="movie-detail__main">
-      <!-- Постер и рейтинг -->
-      <div class="movie-detail__poster-section">
-        <div class="poster-container">
-          <!-- Изображение или цветной блок -->
-          <ng-container *ngIf="!showColorFallback()">
-            <img
-              [src]="getSafeImageUrl(movie.poster)"
-              [alt]="movie.title"
-              class="movie-poster"
-              loading="lazy"
-              (error)="handleImageError($event)"
-            />
-          </ng-container>
-
-          <div
-            *ngIf="showColorFallback()"
-            class="movie-poster-fallback"
-            [style.background]="'linear-gradient(135deg, ' + getMovieColor() + ' 0%, #333 100%)'"
-          >
-            <div class="fallback-text">{{ movie.title }}</div>
-          </div>
-
-          <div class="rating-badge">
-            <span class="rating-value">{{ movie.ratingFormatted }}</span>
-            <div class="rating-stars">
-              <span *ngFor="let star of getRatingStars(); let i = index" class="star">
-                <svg *ngIf="star === 1" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                </svg>
-                <svg *ngIf="star === 0.5" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77V2z"/>
-                </svg>
-                <svg *ngIf="star === 0" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-                        fill-opacity="0.3"/>
-                </svg>
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Информация о фильме -->
-      <div class="movie-detail__info-section">
-        <div class="info-grid">
-          <div class="info-item">
-            <h3 class="info-label">Год выпуска</h3>
-            <p class="info-value">{{ movie.year }}</p>
-          </div>
-
-          <div class="info-item">
-            <h3 class="info-label">Продолжительность</h3>
-            <p class="info-value">{{ movie.durationFormatted }}</p>
-          </div>
-
-          <div class="info-item">
-            <h3 class="info-label">Режиссер</h3>
-            <p class="info-value">{{ movie.director }}</p>
-          </div>
-
-          <div class="info-item">
-            <h3 class="info-label">Жанры</h3>
-            <div class="genres-list">
-              <span *ngFor="let genre of movie.genres" class="genre-tag">
-                {{ genre }}
-              </span>
-            </div>
-          </div>
-
-          <div class="info-item full-width">
-            <h3 class="info-label">В главных ролях</h3>
-            <p class="info-value">{{ movie.castFormatted }}</p>
-          </div>
-
-          <div class="info-item full-width">
-            <h3 class="info-label">Описание</h3>
-            <p class="description">{{ movie.description }}</p>
-          </div>
-        </div>
-      </div>
-    </main>
-
-    <!-- Рекомендованные фильмы -->
-    <footer *ngIf="recommendedMovies.length > 0" class="movie-detail__recommendations">
-      <h2 class="recommendations-title">Рекомендуем посмотреть</h2>
-      <div class="recommendations-grid">
-        <app-movie-card
-          *ngFor="let recommendedMovie of recommendedMovies"
-          [movie]="recommendedMovie"
-          [showDetails]="false"
-          (cardClick)="onRecommendedMovieClick(recommendedMovie.id)"
-          class="recommendation-card"
-        ></app-movie-card>
-      </div>
-    </footer>
+    <div class="movie-info">
+      <p><strong>Год:</strong> {{ movie.year }}</p>
+      <p><strong>Длительность:</strong> {{ movie.duration }} мин</p>
+      <p><strong>Режиссер:</strong> {{ movie.director }}</p>
+      <p><strong>Жанры:</strong> {{ movie.genres.join(', ') }}</p>
+      <p><strong>Описание:</strong> {{ movie.description }}</p>
+    </div>
   </div>
 </div>

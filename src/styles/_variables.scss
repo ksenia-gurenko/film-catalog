@@ -1,95 +1,101 @@
 // CSS переменные для темы
 :root {
-  // Основные цвета
-  --primary-color: #1976d2;
-  --primary-dark: #0d47a1;
-  --primary-light: #64b5f6;
-  --secondary-color: #ff4081;
-  --secondary-dark: #c60055;
-  --secondary-light: #ff79b0;
+  --primary-color: #4361ee;
+  --primary-dark: #3a0ca3;
+  --primary-light: #4895ef;
+  --primary-gradient: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
 
-  // Цвета текста (светлая тема по умолчанию)
-  --text-primary: #212121;
-  --text-secondary: #757575;
+  // Монохромная палитра
+  --gray-50: #f8fafc;
+  --gray-100: #f1f5f9;
+  --gray-200: #e2e8f0;
+  --gray-300: #cbd5e1;
+  --gray-400: #94a3b8;
+  --gray-500: #64748b;
+  --gray-600: #475569;
+  --gray-700: #334155;
+  --gray-800: #1e293b;
+  --gray-900: #0f172a;
+
+  // Цвета текста
+  --text-primary: var(--gray-900);
+  --text-secondary: var(--gray-600);
+  --text-tertiary: var(--gray-400);
   --text-light: #ffffff;
 
-  // Цвета фона (светлая тема по умолчанию)
-  --background-primary: #f5f5f5;
+  // Цвета фона
+  --background-primary: var(--gray-50);
   --background-secondary: #ffffff;
   --background-card: #ffffff;
-  --background-dark: #212121;
+  --background-elevated: #ffffff;
+
+  // Специальные поверхности
   --background-header: #ffffff;
-  --background-footer: #212121;
+  --background-footer: var(--gray-900);
 
   // Границы и тени
-  --border-color: #e0e0e0;
-  --shadow-color: rgba(0, 0, 0, 0.1);
-  --shadow-color-dark: rgba(0, 0, 0, 0.2);
-
-  // Состояния
-  --success-color: #4caf50;
-  --warning-color: #ff9800;
-  --error-color: #f44336;
-
-  // Рейтинги
-  --rating-success: #4caf50;
-  --rating-warning: #ff9800;
-  --rating-error: #f44336;
+  --border-color: var(--gray-200);
+  --border-strong: var(--gray-300);
+  --shadow-color: rgba(15, 23, 42, 0.08);
+  --shadow-medium: rgba(15, 23, 42, 0.15);
+  --shadow-strong: rgba(15, 23, 42, 0.25);
 }
 
-// Темная тема
+// Темная тема - более контрастная
 .dark-theme {
-  --primary-color: #64b5f6;
-  --primary-dark: #42a5f5;
-  --primary-light: #90caf9;
-  --secondary-color: #ff79b0;
-  --secondary-dark: #ff4081;
-  --secondary-light: #ffb3d9;
+  // Основные цвета
+  --primary-color: #60a5fa;
+  --primary-dark: #3b82f6;
+  --primary-light: #93c5fd;
 
-  // Цвета текста (темная тема)
-  --text-primary: #ffffff;
-  --text-secondary: #b0b0b0;
-  --text-light: #ffffff;
+  // Монохромная палитра (инвертирована)
+  --gray-50: #0f172a;
+  --gray-100: #1e293b;
+  --gray-200: #334155;
+  --gray-300: #475569;
+  --gray-400: #64748b;
+  --gray-500: #94a3b8;
+  --gray-600: #cbd5e1;
+  --gray-700: #e2e8f0;
+  --gray-800: #f1f5f9;
+  --gray-900: #f8fafc;
 
-  // Цвета фона (темная тема)
-  --background-primary: #121212;
-  --background-secondary: #1e1e1e;
-  --background-card: #2d2d2d;
-  --background-dark: #000000;
-  --background-header: #1e1e1e;
+  // Цвета текста
+  --text-primary: var(--gray-900);
+  --text-secondary: var(--gray-600);
+  --text-tertiary: var(--gray-400);
+
+  // Цвета фона
+  --background-primary: var(--gray-50);
+  --background-secondary: var(--gray-100);
+  --background-card: var(--gray-200);
+  --background-elevated: var(--gray-300);
+
+  // Специальные поверхности
+  --background-header: var(--gray-100);
   --background-footer: #000000;
 
-  // Границы и тени (темная тема)
-  --border-color: #404040;
+  // Границы и тени
+  --border-color: var(--gray-300);
+  --border-strong: var(--gray-400);
   --shadow-color: rgba(0, 0, 0, 0.3);
-  --shadow-color-dark: rgba(0, 0, 0, 0.5);
-
-  // Состояния (немного ярче для темной темы)
-  --success-color: #66bb6a;
-  --warning-color: #ffb74d;
-  --error-color: #ef5350;
-
-  // Рейтинги для темной темы
-  --rating-success: #66bb6a;
-  --rating-warning: #ffb74d;
-  --rating-error: #ef5350;
+  --shadow-medium: rgba(0, 0, 0, 0.4);
+  --shadow-strong: rgba(0, 0, 0, 0.5);
 }
 
 // Sass переменные для обратной совместимости
 $primary-color: var(--primary-color);
 $primary-dark: var(--primary-dark);
 $primary-light: var(--primary-light);
-$secondary-color: var(--secondary-color);
-$secondary-dark: var(--secondary-dark);
-$secondary-light: var(--secondary-light);
+$accent-color: var(--accent-color);
 
 $text-primary: var(--text-primary);
 $text-secondary: var(--text-secondary);
 $text-light: var(--text-light);
 
-$background-light: var(--background-primary);
-$background-dark: var(--background-dark);
+$background-primary: var(--background-primary);
 $background-card: var(--background-card);
+$background-dark: var(--gray-900);
 
 $success-color: var(--success-color);
 $warning-color: var(--warning-color);
@@ -113,12 +119,12 @@ $font-size-xl: 24px;
 $font-size-xxl: 32px;
 
 // Border
-$border-radius-sm: 4px;
-$border-radius-md: 8px;
-$border-radius-lg: 12px;
-$border-radius-xl: 16px;
+$border-radius-sm: 6px;
+$border-radius-md: 12px;
+$border-radius-lg: 16px;
+$border-radius-xl: 24px;
 
 // Transitions
-$transition-fast: 0.2s ease;
-$transition-normal: 0.3s ease;
-$transition-slow: 0.5s ease;
+$transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
