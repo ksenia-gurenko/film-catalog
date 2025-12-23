@@ -27,5 +27,5 @@ Angular приложение для просмотра каталога филь
 
  в двух разных терминалах:
  
- npm run server
- npm start
+ - npm run server
+ - npm start
